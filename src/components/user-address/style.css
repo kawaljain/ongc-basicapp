@@ -1,0 +1,112 @@
+
+.footer-wrapper {
+    height: 30vh;
+    text-align: left;  
+}
+.align-address-button {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-inner-wrapper {
+    height: 25vh;
+    width: 60vw;
+    background: #fff;
+    margin: auto;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.location-img {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+}
+.user-address-show {
+    display: flex;
+    max-width: 16vw; 
+}
+.user-address-show div, span {
+    text-align: left;
+    margin-right: 0.5rem;
+}
+.building-name {
+    font-size: medium;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.change-address-button {
+    padding: 00.5rem 1rem;
+    max-height: 2rem;
+    width: 10rem;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+.confirm-location-button {
+    background: transparent linear-gradient(278deg, #F73636 0%, #F79498 100%) 0% 0% no-repeat padding-box;
+    padding: 1rem 10rem;
+    border-radius: 0.5rem;
+    margin: 2rem 18vw;
+    border: none;
+}
+.modal-image {
+    /* background-image: url('../images/modalImage.png'); */
+    height: 35rem;
+    width: 18rem;
+    background-size: cover;
+    background-position: center;
+  }
+  .modal-content {
+    display: flex;
+    flex-direction: row;
+  }
+  .modal-dialog {
+    max-width: 700px;
+  }
+  .form-wrapper {
+    padding: 2rem;
+  }
+  .sign-up-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20rem;
+  }
+  .sign-up-form input,
+  button {
+    margin: 1rem 0;
+    border: none;
+    border-bottom: 1px solid #000;
+  }
+  .form-wrapper h2 {
+    color: #000;
+  }
+  .signup-bottom-border {
+    width: 4rem;
+    margin-left: 0;
+    height: 4px;
+    background-color: #007bff;
+    margin-top: 0;
+  }
+  .terms-text {
+    margin-top: 2rem;
+    color: #000;
+  }
+  .terms-text span {
+    color: #007bff;
+  }
+  .change-address-modal {
+    position: absolute;
+    background-color: #fff;
+    opacity: 0.4;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 5% 20%;
+  }
+  .inner-modal-wrapper {
+    background-color: #000;
+    margin: 5rem;
+    align-items: center;
+    width: 40vw;
+    height: 40vw;
+  }

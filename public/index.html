@@ -25,10 +25,13 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/e01a97c7f1d672dea5e6f4ff31b56111/map_load?v=1.3"></script>
+    
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -40,4 +43,98 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- <script>
+    // var map,picker;
+    //     function initPlaceHolder(){
+    //         map = new mappls.Map('map', {
+    //             center: [28.62, 77.09],
+    //             zoom: 5
+    //         });
+    //         map.addListener('load',function(){
+    //           console.log('iit');
+    //             /*Place Picker plugin initialization*/
+    //             var options = {
+    //                 map: map,
+    //                 header:false,
+    //                 closeBtn:true,
+    //                 pinImage:'https://maps.mappls.com/images/to.png',
+    //                 pinHeight:40,
+    //             };
+    //             mappls.placePicker(options,callback);
+    //             function callback(data) {
+    //               console.log('iit callback');
+    //               console.log(data);
+    //                 picker=data;
+    //                 console.log(picker);
+    //             }
+    //         });
+    //     }
+    var map,marker;
+    /*Map Initialization*/
+    function initPlaceHolder(){
+
+      // map = new mappls.Map('map', {
+      //           center: [28.62, 77.09],
+      //           zoom: 5
+      //       });
+      //       map.addListener('load',function(){
+      //           /*Place Picker plugin initialization*/
+      //           var options = {
+      //               map: map,
+      //               header:true,
+      //               closeBtn:true,
+      //           };
+      //           mappls.placePicker(options,callback);
+      //           function callback(data) {
+      //               picker=data;
+      //               console.log(picker);
+      //           }
+      //       });
+      //       return;
+        map = new mappls.Map('map', {
+            center: [28.09, 78.3],
+            zoom: 4
+        });
+
+        // 22.717676297395027, 75.86839713782766
+        map.addListener('load',function(){
+            var optional_config = {
+                location: [22.717676297395027, 75.86839713782766],
+                region: "IND",
+                height:500,
+                searchChars:4,
+            };
+            var options = {
+                    map: map,
+                    header:false,
+                };
+            mappls.placePicker(options,callback);
+            // new mappls.search(document.getElementById("LocationSearch"), optional_config, callback);
+            function callback(data) {
+              console.log('sadf');
+                console.log(data);
+                return;
+                if (data) {
+                    var dt = data[0];
+                    if (!dt) return false;
+                    var eloc = dt.eLoc;
+                    var place = dt.placeName + ", " + dt.placeAddress;
+                    /*Use elocMarker Plugin to add marker*/
+                    if (marker) marker.remove();
+                    mappls.pinMarker({
+                        map: map,
+                        pin: eloc,
+                        popupHtml: place,
+                        popupOptions: {
+                            openPopup: true
+                        }
+                    }, function(data){
+                        marker=data;
+                        marker.fitbounds();
+                    })
+                }
+            }
+        });
+    }
+</script> -->
 </html>
