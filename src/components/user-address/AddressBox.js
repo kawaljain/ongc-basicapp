@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import location from "../../assets/location.png";
-// import ChangeAddressModal from "./changeAddressModal";
 
-export default function UserAddressUI({ address,saveAddress }) {
+import ChangeAddressModal from "./AddressModal";
+
+export default function UserAddressUI({ address, saveAddress }) {
   const [showChangeAddressModal, setChangeAddressModal] = useState(false);
   return (
     <>
-      {/* <ChangeAddressModal
-        setShow={setChangeAddressModal}
-        show={showChangeAddressModal}
-      /> */}
       <div className="wrapper-footer-ui">
         <>
           <h2 className="footer-heading-text">Add your address</h2>
@@ -33,7 +30,17 @@ export default function UserAddressUI({ address,saveAddress }) {
             </button>
           </div>
         </>
-        <button className="confirm-location-button" onClick={()=>saveAddress()}>Confirm location</button>
+        <button
+          className="confirm-location-button"
+          onClick={() => console.log("confirm")}
+        >
+          Confirm location
+        </button>
+        <ChangeAddressModal
+          setShow={setChangeAddressModal}
+          show={showChangeAddressModal}
+          saveAddress={saveAddress}
+        />
       </div>
     </>
   );

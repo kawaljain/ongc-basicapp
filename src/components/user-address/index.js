@@ -1,8 +1,8 @@
 import React, { useReducer, useState } from "react";
 import "./style.css";
-import UserAddressUI from "./AddressBox";
+import AddressBox from "./AddressBox";
 import Address from "../../api/Address";
-
+import MapUI from "./map-ui";
 const updateAddress = (state, action) => {};
 
 const UserAddress = () => {
@@ -25,16 +25,21 @@ const UserAddress = () => {
     longitude: "77.9283792",
     addressId: "string",
     defaultAddress: false,
-    userId: 1
+    userId: 1,
   };
-  const [address, dispatchAddress] = useReducer(updateAddress, {
-    ...initialState,
-  });
+  const [address, updateAddress] = useState(initialState);
+
   const [showChangeAddress, setChangeAddress] = useState(false);
+
   const onChangeAddress = () => {
     setChangeAddress(true);
   };
-  const saveAddress =  async () => {
+
+  const saveAddress = async (data) => {
+    console.log("d");
+    console.log(data);
+    console.log(address);
+    return;
     try {
       const requestResponse = await Address.saveAddress(initialState);
 
@@ -42,13 +47,26 @@ const UserAddress = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handlePositionChange = (lat, lng) => {
+    console.log(lat, lng);
+    // updateAddress({
+    //   ...address,
+    //   latitude:lat,
+    //   longitude:lng
+    // })
+  };
 
-  }
   return (
     <>
+      <MapUI savePosition={handlePositionChange} />
       <footer className="footer-wrapper">
         <section className="footer-inner-wrapper">
-          <UserAddressUI address={address} onChangeAddress={onChangeAddress} saveAddress={saveAddress} />
+          <AddressBox
+            address={address}
+            onChangeAddress={onChangeAddress}
+            saveAddress={saveAddress}
+          />
         </section>
       </footer>
     </>
