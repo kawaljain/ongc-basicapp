@@ -36,12 +36,10 @@ const UserAddress = () => {
   };
 
   const saveAddress = async (data) => {
-    console.log("d");
-    console.log(data);
-    console.log(address);
-    return;
+
+    // return;
     try {
-      const requestResponse = await Address.saveAddress(initialState);
+      const requestResponse = await Address.saveAddress(address);
 
       console.log(requestResponse);
     } catch (error) {

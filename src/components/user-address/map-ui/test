@@ -1,0 +1,128 @@
+import React, { useEffect, useState, useRef } from "react";
+
+import Map from "mapmyindia-react";
+import { mappls,mappls_plugin } from "mappls-web-maps";
+import "./style.css";
+
+export default function AddressUI(props) {
+  const [position, setPosition] = useState("");
+
+  const [lat, setLat] = useState("");
+  const [long, setLong] = useState("");
+
+  const styleMap = { width: "99%", height: "50vh", display: "inline-block" };
+  const mapProps = {
+    center: [28.633, 77.2194],
+    traffic: false,
+    zoom: 4,
+    geolocation: false,
+    clickableIcons: false,
+  };
+  var mapObject;
+  var mapplsClassObject = new mappls();
+
+ const test = () => {
+  mapplsClassObject.initialize("6027722769eb0125f23b6bedafe4f37d", () => {
+    mapObject = mapplsClassObject.Map({ id: "map", properties: mapProps });
+    //load map layers/components after map load, inside this callback (Recommended)
+    mapObject.on("load", () => {
+      // console.log(mapplsClassObject);
+      // console.log(mappls_plugin)
+      //   // Activites after mapload
+      //   // console.log(mapObject);
+    
+      var options = {
+        map: mapObject,
+        callback: (data) => console.log(data),
+        location: { lat: 28.8787, lng: 77.08888 },
+        search: true,
+      };
+      // var pinMarkerObj =  mappls_plugin.pinMarker( {map:mapObject, pin:'mmi000',popupHtml:"mappls"}, (data)=>console.log(data) );
+                 
+      // var picker = mappls_plugin.placePicker(options,(data)=>console.log(data));
+    
+
+      var optional_config = {
+        location: [28.61, 77.23],
+        region: "IND",
+        height:300,
+    };
+    mappls_plugin.search(document.getElementById("map"), optional_config, (data)=>console.log(data));
+    
+    });
+  });
+ }
+  // const MapIndia = useRef();
+  useEffect(() => {
+    // console.log(window)
+    // if(window.MapmyIndia) {
+    //   let  map = new window.MapmyIndia.Map('map', {center: [28.62, 77.09], zoom: 15, search: false});
+    // }
+
+    // console.log(map);
+    // // var map = new MapmyIndia.Map('map', {center: [28.62, 77.09], zoom: 15, search: false});
+    //  var options={
+    //       map:map,//new window.MapmyIndia.Map('map', {center: [28.62, 77.09], zoom: 15, search: false}),
+    //       callback:(data)=>console.log(data),
+    //   };
+    //   var picker= new window.MapmyIndia.placePicker(options);
+    //         console.log(picker);
+    getPosition();
+    test();
+    // initScript();
+  }, []);
+
+
+  // console.log(MapIndia);
+  const getPosition = async () => {
+    await navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setPosition(position);
+        setLat(position.coords.latitude);
+        setLong(position.coords.longitude);
+      },
+      (err) => {
+        alert("Kindly enable the location.");
+        console.log("k");
+        console.log(err);
+      }
+    );
+  };
+
+  return (
+    <>
+      {lat && long ? (
+        <div className="mapContainer">
+          <div id="map" style={styleMap}></div>
+          {/* <Map
+            markers={[
+              {
+                position: [lat, long],
+                draggable: true,
+                title: "Marker title",
+                onClick: (e) => {
+                  // setLat(e.target._latlng.lat);
+                  // setLong(e.target._latlng.lng);
+                  //   console.log("clicked ");
+                },
+                onDragend: (e) => {
+                  // e.preventDefault();
+                  //   console.log(e);
+                  // console.log(e.target);
+                  // setLat(e.target._latlng.lat);
+                  // setLong(e.target._latlng.lng);
+
+                  props.savePosition(
+                    e.target._latlng.lat,
+                    e.target._latlng.lng
+                  );
+                  //   console.log("dragged");
+                },
+              },
+            ]}
+          /> */}
+        </div>
+      ) : null}
+    </>
+  );
+}

@@ -9,9 +9,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     config.headers["Content-Type"] = "application/json";
-    config.headers["Accept"] = "application/json";
-    config.headers["Language"] = "en";
-
+    // console.log(config);
     return config;
   },
   (error) => Promise.reject(error)
